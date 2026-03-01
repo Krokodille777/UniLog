@@ -31,6 +31,7 @@ class UniLog(QWidget):
         self.decimalInput.setPlaceholderText("...")
         self.decimalInput.setStyleSheet("background-color: #34495e; color: white; border: none; padding: 7px; height: 10px;  ")
         self.ioLayout.addWidget(self.decimalInput)
+
         self.equals = QLabel(" = ")
         self.equals.setAlignment(Qt.AlignCenter)
         self.equals.setStyleSheet("font-size: 16px; font-weight: bold; ")
@@ -47,12 +48,32 @@ class UniLog(QWidget):
 
         self.convertButton = QPushButton("Convert")
         self.convertButton.setStyleSheet("background-color: #e74c3c; color: white; border: none; padding: 7px; font-size: 14px;")
+        self.convertButton.setCursor(Qt.PointingHandCursor)
+        self.convertButton.setFixedWidth(100)
+        self.convertButton.setFixedHeight(30)
         self.convertButton.clicked.connect(self.convertDecimalToBinary)
-        self.ioLayout.addWidget(self.convertButton)
+        
 
         self.firstLayout.addLayout(self.ioLayout)
+        self.firstLayout.addWidget(self.convertButton)
 
+    def convertDecimalToBinary(self):
+        decimalNumber = self.decimalInput.text()
+        if decimalNumber.isdigit():
+            decimalNumber = int(decimalNumber)
+            binaryString = bin(decimalNumber)[2:]
+            # Pad the binary string with leading zeros to ensure it is 8 bits long
+            binaryString = binaryString.zfill(8)
+            # Update the bit labels with the corresponding bits from the binary string
+            print(binaryString)
+            for i in range(8):
+                self.bitLabels[i].setText(binaryString[i])
+        else:
+            # If the input is not a valid decimal number, reset the bit labels to 0
+            for bitLabel in self.bitLabels:
+                bitLabel.setText("0")
 
+    
 
 
 
