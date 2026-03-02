@@ -35,15 +35,15 @@ Before you get started with UniLog, make sure you have these requirements met:</
 <li>🖥️ A basic understanding of binary numbers and bitwise operations (optional but helpful)</li>
 </ul>
 
-<h2 style = "text-align:center; font-size: 24px; color: #2362a5;">📥 Installation</h2>
-<p style = "text-align:center; font-size: 18px; padding: 10px; color: #7f8c8d;">
+<h2 style = "color: #2362a5;">📥 Installation</h2>
+<p style = " padding: 10px; color: #7f8c8d;">
 To install UniLog, simply clone the repository and run the main.py file.</p>
 
 
 <hr>
-<h2 style = "text-align:center; font-size: 24px; color: #2362a5;">⚙️ Usage</h2>
-<p style = "text-align:center; font-size: 18px; padding: 10px; color: #7f8c8d;"> Here are instructions how to use UniLog:</p>
-<ol style = "font-size: 18px; color: #7f8c8d;">
+<h2 style = "color: #2362a5;">⚙️ Usage</h2>
+<p style = "padding: 10px; color: #7f8c8d;"> Here are instructions how to use UniLog:</p>
+<ol style = "color: #7f8c8d;">
 <li>🔢 Input a decimal number in upper input field. And then click Convert button to convert the entered number to binary. It's CRUCIAL for this app. The bottom part of app is not available until the conversion is done.</li>
 <li>📺 When conversion is done, the binary result will be displayed as a row of 8 cells, each representing a bit. The decimal result will be shown below the binary row.</li>
 <li>⚡ Now you can choose a bitwise operation from the dropdown menu. Majority of operations in this app require  to enter a bit position (0 - 7) you want to operate with. </li>
@@ -69,3 +69,11 @@ To install UniLog, simply clone the repository and run the main.py file.</p>
 <img style="display:block; margin-left:auto; margin-right:auto;" src="unilog1.png" alt="UniLog Screenshot" width="600" height="400"><br>
 <img style="display:block; margin-left:auto; margin-right:auto;" src="unilog2.png" alt="UniLog Screenshot 2" width="600" height="400"><br>
 <img style="display:block; margin-left:auto; margin-right:auto;" src="unilog3.png" alt="UniLog Screenshot 3" width="600" height="400">
+
+<hr>
+<h2 style = "text-align:center; font-size: 24px; color: #2362a5;">🫱🏻‍🫲🏻Contributing</h2>
+<p style = "text-align:center; font-size: 18px; padding: 10px; color: #7f8c8d;">Contributions to UniLog are welcome! If you have any ideas for improvements or new features, feel free to submit a pull request or open an issue on the GitHub repository.</p>
+
+<hr>
+
+<h1 style = "text-align:center; font-size: 36px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; color: #2362a5;">Have fun, exploring a realm of binary numbers!</h1>
