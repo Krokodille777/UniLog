@@ -19,7 +19,7 @@ class UniLog(QWidget):
 
         self._converted = False  # Track whether a conversion has been done
 
-        # ── SECTION 1: Decimal → Binary Conversion ──────────────────────
+        #Decimal → Binary Conversion
 
         self.firstLayout = QVBoxLayout()
         self.firstLayout.setAlignment(Qt.AlignTop)
@@ -89,7 +89,7 @@ class UniLog(QWidget):
         self.hr1.setStyleSheet("background-color: #7f8c8d;")
         self.mainLayout.addWidget(self.hr1)
 
-        # ── SECTION 2: Bitwise Operations ────────────────────────────────
+        #Bitwise Operations
 
         self.secondLayout = QVBoxLayout()
 
@@ -108,15 +108,15 @@ class UniLog(QWidget):
         )
         self.operationComboBox.addItems([
             "Invert String (NOT)",
-            "Insert Bit (ADD | OR)",
+            "Set Bit (ADD | OR)",
             "Define Bit (AND)",
-            "Clear Bit (AND (AND NOT))",
+            "Reset Bit (AND (AND NOT))",
             "Invert Bit (XOR)",
         ])
         self.operationComboBox.currentTextChanged.connect(self._onOperationChanged)
         self.chooseOperationLayout.addWidget(self.operationComboBox)
 
-        # Bit-position spinner (0–7) — much easier than typing a full mask
+        # Bit-position spinner (0–7)
         self.bitPosLabel = QLabel("Bit position:")
         self.bitPosLabel.setStyleSheet("font-size: 13px;")
         self.chooseOperationLayout.addWidget(self.bitPosLabel)
@@ -134,7 +134,7 @@ class UniLog(QWidget):
         )
         self.chooseOperationLayout.addWidget(self.bitPosSpin)
 
-        # Show the generated mask so the student can see what's happening
+        # Show the generated mask so the user can see what's happening
         self.maskPreview = QLabel("Mask: 00000001")
         self.maskPreview.setStyleSheet("font-size: 12px; color: #95a5a6;")
         self.bitPosSpin.valueChanged.connect(self._updateMaskPreview)
@@ -170,7 +170,7 @@ class UniLog(QWidget):
         self.buttonsLayout.addWidget(self.clearBinaryResultButton, alignment=Qt.AlignCenter)
         self.secondLayout.addLayout(self.buttonsLayout)
 
-        # ── Result row: decimal = binary grid ────────────────────────────
+        # Result row: decimal = binary grid
 
         self.resultRow = QHBoxLayout()
         self.resultRow.setAlignment(Qt.AlignCenter)
@@ -202,7 +202,7 @@ class UniLog(QWidget):
         self.secondLayout.addLayout(self.resultRow)
         self.mainLayout.addLayout(self.secondLayout)
 
-        # ── Collect all section-2 widgets so we can enable/disable them ──
+        #Collect all section-2 widgets so we can enable/disable them
         self._section2Widgets = [
             self.operationComboBox,
             self.bitPosSpin,
@@ -210,11 +210,11 @@ class UniLog(QWidget):
             self.clearBinaryResultButton,
         ]
 
-        # Initial state: hide bit-position for NOT, disable section 2
+        # Initial state
         self._onOperationChanged(self.operationComboBox.currentText())
         self._setSection2Enabled(False)
 
-    # ── Helpers ──────────────────────────────────────────────────────────
+    #Helpers
 
     def _setSection2Enabled(self, enabled: bool):
         """Enable or disable all interactive widgets in the operations section."""
@@ -239,7 +239,7 @@ class UniLog(QWidget):
         value = 1 << position
         return bin(value)[2:].zfill(8)
 
-    # ── Conversion ───────────────────────────────────────────────────────
+    #Conversion
 
     def convertDecimalToBinary(self):
         self.errorLabel1.setText("")
@@ -273,7 +273,7 @@ class UniLog(QWidget):
         for lbl in labels:
             lbl.setText("0")
 
-    # ── Bitwise engine ───────────────────────────────────────────────────
+    #Bitwise engine
 
     @staticmethod
     def convertBinaryToDecimal(binaryString: str) -> int:
@@ -308,7 +308,7 @@ class UniLog(QWidget):
             "1" if (x == "1") ^ (y == "1") else "0" for x, y in zip(a, b)
         )
 
-    # ── Perform the chosen operation ─────────────────────────────────────
+    #Perform the chosen operation
 
     def performOperation(self):
         operation = self.operationComboBox.currentText()
@@ -319,7 +319,7 @@ class UniLog(QWidget):
             self.operationInfoLabel.setText(f"NOT {binaryString1}")
             result = self.performNOT(binaryString1)
 
-        elif operation == "Insert Bit (ADD | OR)":
+        elif operation == "Set Bit (ADD | OR)":
             self.operationInfoLabel.setText(
                 f"{binaryString1} OR {mask}"
             )
@@ -331,7 +331,7 @@ class UniLog(QWidget):
             )
             result = self.performAND(binaryString1, mask)
 
-        elif operation == "Clear Bit (AND (AND NOT))":
+        elif operation == "Reset Bit (AND (AND NOT))":
             self.operationInfoLabel.setText(
                 f"{binaryString1} AND NOT {mask}"
             )
@@ -356,7 +356,7 @@ class UniLog(QWidget):
         self.decimalResultLabel.setText(f"Result: {decimal}")
 
     def clearBinaryResult(self):
-         #Clear button sets result bits to 0 and decimal result to –
+         #Clear button sets result bits to 0 and decimal result to "–"
         for lbl in self.resultBitLabels:
             lbl.setText("0")
         self.decimalResultLabel.setText("Result: –")
